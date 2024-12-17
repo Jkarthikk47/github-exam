@@ -1,0 +1,120 @@
+1)
+*Demonstrate all the basic plots using Matplotlib package and python programming.
+import matplotlib.pyplot as plt
+import numpy as np
+# Generate some data for plotting
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+plt.figure()
+plt.plot(x,y)
+plt.title("Line Chart")
+categories=['A','B','C','D']
+values=[20,35,30,25] plt.figure()
+plt.bar(categories,values)
+plt.title("Bar Chart")
+x=np.random.randn(100)
+y=np.random.randn(100)
+colors=np.random.rand(100)
+sizes=100*np.random.rand(100) plt.figure()
+plt.scatter(x,y,c=colors, s=sizes, alpha=0.5)
+plt.title("Scatter Plot")
+sizes = [30, 20, 25, 15, 10]
+labels = ['A', 'B', 'C', 'D', 'E']
+plt.figure()
+plt.pie(sizes, labels=labels, autopct="%1.1f%%") plt.title("Pie Chart")
+plt.show()
+
+
+
+
+
+2)
+*Implement a python program to perform File Operations on Excel Dataset.
+import pandas as pd
+df=pd.read_excel('data.xlsx') print("First
+few rows") print(df.head())
+print("\n Summary statistics:")
+print(df.describe())
+filtered_data=df[df['Age']>30] print("\n
+Filtered data(Age>30):")
+print(filtered_data)
+sorted_data=df.sort_values(by='salary',ascending=False)
+print("\nSorted data(by Salary):")
+print(sorted_data)
+df['Bonus']=df['salary']*0.1
+print("\n Data with new column(Bonus)") print(df)
+df.to_excel('Output.xlsx',index=False) print("\n Data
+written to output.xlsx")
+
+
+
+3)
+*Write a python program to perform Array operations using the Numpy package.
+import numpy as np #
+Create arrays
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([6, 7, 8, 9, 10])
+print("Array a", a)
+print("Array b", b)
+print("Sum of array a and b", np.add(a,b))
+print("Difference of array a and b", np.subtract(a,b))
+print("Product of arrays a and b", np.multiply(a,b))
+print("Division of arrays a and b", np.divide(a,b))
+print("Square root of array a:",np.sqrt(a))
+print("Exponential of array a:",np.exp(a))
+print("Minimum value of array a:",np.min(a))
+print("Maximum value of array b:",np.max(b))
+print("Mean of array a:",np.mean(a)) print("Standard
+deviation of array b:",np.std(b)) print("Sum of
+elements in array a:",np.sum(a))
+c=np.array([[1,2],[3,4],[5,6]])
+print("Array c:")
+print(c)
+print("Reshaped array c:")
+print(np.reshape(c,(2,3)))
+d=np.array([[1,2,3],[4,5,6]])
+print("Array d:")
+print(d)
+print("Transposed array d:")
+print(np.transpose(d))
+
+
+
+
+
+4)
+*Build an Artificial Neural Network by implementing the Backpropagation algorithm
+and test the same using appropriate data sets.
+Procedure:
+import numpy as np
+x=np.array(([2,9],[1,9],[3,6]),dtype=float)
+y=np.array(([92],[86],[89]),dtype=float)
+x=x/np.amax(x,axis=0)
+y=y/100
+def sigmoid(x):
+return 1/(1+np.exp(-x))
+def derivation_sigmoid(x): return
+x*(1-x)
+epoch=5000 lr=0.1
+inputlayer_neurons=2
+hiddenlayer_neurons=3
+outputlayer_neurons=1
+wb=np.random.uniform(size=(inputlayer_neurons,hiddenlayer_neurons))
+bb=np.random.uniform(size=(1,hiddenlayer_neurons))
+wout=np.random.uniform(size=(hiddenlayer_neurons,outputlayer_neurons))
+bout=np.random.uniform(size=(1,outputlayer_neurons))
+for i in range(epoch):
+hinp1=np.dot(x,wb)
+hinp=hinp1+bb hlayer_act=sigmoid(hinp)
+outinp1=np.dot(hlayer_act,wout)
+outinp=outinp1+bout
+output=sigmoid(outinp)
+EO=y-output outgrad=derivation_sigmoid(output)
+d_output=EO*outgrad EH=d_output.dot(wout.T)
+hiddengrad=derivation_sigmoid(hlayer_act)
+d_hiddenlayer=EH*hiddengrad
+wout+=hlayer_act.T.dot(d_output)*lr
+wb+=x.T.dot(d_output)*lr
+print("Inpput:\n" +str(x))
+print("Actual:\n"+str(y))
+print("Predicted:\n",output)
